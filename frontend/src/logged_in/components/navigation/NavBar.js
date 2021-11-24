@@ -178,7 +178,7 @@ function NavBar(props) {
       }
     },
     {
-      link: "/c/dashboardPaciente",
+      link: "/c/dashboard-organizacion",
       name: "Principal Paciente",
       onClick: closeMobileDrawer,
       icon: {

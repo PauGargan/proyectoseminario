@@ -145,7 +145,7 @@ function Routing(props) {
           selectDashboard={selectDashboard}
         />
         <PropsRoute
-          path="/c/dashboardPaciente"
+          path="/c/dashboard-organizacion"
           component={DashboardPaciente}
           toggleAccountActivation={toggleAccountActivation}
           pushMessageToSnackbar={pushMessageToSnackbar}
