@@ -151,23 +151,6 @@ function LoginDialog(props) {
               control={<Checkbox color="primary" />}
               label={<Typography variant="body1">Recordarme</Typography>}
             />
-            {status === "verificationEmailSend" ? (
-              <HighlightedInformation>
-                Te enviamos al mail las intruciones para restear la
-                contraseña
-              </HighlightedInformation>
-            ) : (
-              <HighlightedInformation>
-                Paciente: <b>susana@test.com</b> || Pass: <b>paciente</b>
-                <br />
-                Medico: <b>sandro@test.com</b> || Pass:<b>doctor</b>
-                <br />
-                Secretario: <b>lauro@test.com</b> || Pass:<b>secretario</b>
-                <br />
-                Admin: <b>pepita@test.com</b> || Pass:<b>admin</b>
-                <br />
-              </HighlightedInformation>
-            )}
           </Fragment>
         }
         actions={

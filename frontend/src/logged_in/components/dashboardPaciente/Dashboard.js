@@ -16,9 +16,6 @@ function DashboardPaciente(props) {
   return (
     <Fragment>
       <Box mt={4}>
-        <Typography variant="subtitle1" gutterBottom>
-          Bienvenido !
-        </Typography>
       </Box>
       <SettingsArea pushMessageToSnackbar={pushMessageToSnackbar} targets={targets} setTargets={setTargets} />
     </Fragment>

@@ -179,7 +179,7 @@ function NavBar(props) {
     },
     {
       link: "/c/dashboard-organizacion",
-      name: "Principal Paciente",
+      name: "Principal Organizacion",
       onClick: closeMobileDrawer,
       icon: {
         desktop: (
@@ -193,38 +193,6 @@ function NavBar(props) {
         mobile: <EventNoteIcon className="text-white" />
       }
     },
-   /* {
-      link: "/c/posts",
-      name: "Recetas",
-      onClick: closeMobileDrawer,
-      icon: {
-        desktop: (
-          <FileCopyIcon
-            className={
-              selectedTab === "Posts" ? classes.selectedItem : "text-white"
-            }
-            fontSize="small"
-          />
-        ),
-        mobile: <ImageIcon className="text-white" />
-      }
-    }, 
-    {
-      link: "/c/postsPaciente",
-      name: "Recetas paciente",
-      onClick: closeMobileDrawer,
-      icon: {
-        desktop: (
-          <FileCopyIcon
-            className={
-              selectedTab === "Posts" ? classes.selectedItem : "text-white"
-            }
-            fontSize="small"
-          />
-        ),
-        mobile: <ImageIcon className="text-white" />
-      }
-    },*/
     {
       link: "/c/users",
       name: "Organizaciones",
