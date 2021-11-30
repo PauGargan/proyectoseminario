@@ -144,7 +144,7 @@ function UsersTable(props) {
                     scope="row"
                     className={classes.firstData}
                   >
-                    <a chref={listadoOrganizaciones.paginaWeb} className={classes.link} target="_blank">{listadoOrganizaciones.nombre}</a>
+                    <a href={listadoOrganizaciones.paginaWeb} className={classes.link} target="_blank">{listadoOrganizaciones.nombre}</a>
                   </TableCell>
                   <TableCell component="th" scope="row">
                     {listadoOrganizaciones.CUIT}
