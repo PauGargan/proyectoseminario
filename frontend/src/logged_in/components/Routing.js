@@ -98,7 +98,7 @@ function Routing(props) {
           selectPosts={selectPosts}
         />
         <PropsRoute
-          path="/c/users"
+          path="/c/organizaciones"
           component={Users}
           userList={userList}
           roleList={roleList}

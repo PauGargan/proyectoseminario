@@ -190,14 +190,14 @@ function NavBar(props) {
       }
     },
     {
-      link: "/c/users",
+      link: "/c/organizaciones",
       name: "Organizaciones",
       onClick: closeMobileDrawer,
       icon: {
         desktop: (
           <HomeWorkIcon
             className={
-              selectedTab === "Users" ? classes.selectedItem : "text-white"
+              selectedTab === "Organizaciones" ? classes.selectedItem : "text-white"
             }
             fontSize="small"
           />

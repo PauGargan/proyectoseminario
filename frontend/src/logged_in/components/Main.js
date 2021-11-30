@@ -342,7 +342,7 @@ function Main(props) {
   const selectUsers = useCallback(() => {
     smoothScrollTop();
     document.title = "AyudaColectiva";
-    setSelectedTab("Users");
+    setSelectedTab("Organizaciones");
   }, [setSelectedTab]);
 
   const selectPosts = useCallback(() => {
