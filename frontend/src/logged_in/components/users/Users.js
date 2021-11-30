@@ -48,6 +48,8 @@ function Users(props) {
   } = props;
 
   const [listadoOrganizaciones, setOrganizaciones] = useState(null);
+
+  useEffect(selectUsers, [selectUsers]);
   useEffect(() => { 
 
     const getOrganizaciones = async () => {

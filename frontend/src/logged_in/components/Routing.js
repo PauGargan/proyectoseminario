@@ -4,13 +4,10 @@ import { Switch } from "react-router-dom";
 import { withStyles } from "@material-ui/core";
 import Dashboard from "./dashboard/Dashboard";
 import DashboardPaciente from "./dashboardPaciente/Dashboard";
-import MedicalHistory from "./dashboard/medicalhistory/HistorialClinico";
 import Posts from "./posts/Posts";
 import PostsPaciente from "./postsPaciente/Posts"
-import Subscription from "./subscription/Subscription";
 import Users from "./users/Users";
 import PropsRoute from "../../shared/components/PropsRoute";
-import CambiarContraseña from "./navigation/CambiarContraseña"
 
 const styles = (theme) => ({
   wrapper: {
@@ -56,7 +53,6 @@ function Routing(props) {
     DateTimePicker,
     pushMessageToSnackbar,
     posts,
-    transactions,
     userList,
     roleList,
     toggleAccountActivation,
@@ -68,9 +64,7 @@ function Routing(props) {
     isAccountActivated,
     selectDashboard,
     selectPosts,
-    selectSubscription,
     selectUsers,
-    openAddBalanceDialog,
     openAddUserDialog,
   } = props;
   
@@ -104,33 +98,15 @@ function Routing(props) {
           selectPosts={selectPosts}
         />
         <PropsRoute
-          path="/c/subscription"
-          component={Subscription}
-          transactions={transactions}
-          pushMessageToSnackbar={pushMessageToSnackbar}
-          selectSubscription={selectSubscription}
-          openAddBalanceDialog={openAddBalanceDialog}
-        />
-        <PropsRoute
           path="/c/users"
           component={Users}
           userList={userList}
           roleList={roleList}
+          targets={targets}
+          setTargets={setTargets}
           pushMessageToSnackbar={pushMessageToSnackbar}
-          selectUsers={selectUsers}
           openAddUserDialog={openAddUserDialog}
-        />
-        <PropsRoute
-          path="/c/historia-clinica"
-          component={MedicalHistory}
-          pushMessageToSnackbar={pushMessageToSnackbar}
-     //     openAddUserDialog={openAddUserDialog}
-        />
-        <PropsRoute
-          path="/c/navigation/CambiarContraseña"
-          component={CambiarContraseña}
-          pushMessageToSnackbar={pushMessageToSnackbar}
-     //     openAddUserDialog={openAddUserDialog}
+          selectUsers={selectUsers}
         />
         <PropsRoute
           path="/c/dashboard"

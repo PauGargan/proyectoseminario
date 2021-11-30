@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { ListItemText, Button, Toolbar, withStyles } from "@material-ui/core";
+import { ListItemText, Toolbar, withStyles } from "@material-ui/core";
 
 const styles = {
   toolbar: {
@@ -17,14 +17,7 @@ function UsersInfo(props) {
   return (
     <Toolbar className={classes.toolbar}>
       <ListItemText primary="" />
-      <Button
-        variant="contained"
-        color="secondary"
-        onClick={openAddUserDialog}
-        disableElevation
-      >
-        Crear nuevo
-      </Button>
+      
     </Toolbar>
   );
 }

@@ -57,7 +57,6 @@ function Main(props) {
   const [isAccountActivated, setIsAccountActivated] = useState(false);
   const [isAddBalanceDialogOpen, setIsAddBalanceDialogOpen] = useState(false);
   const [isAddUserDialogOpen, setIsAddUserDialogOpen] = useState(false);
-  const [isAddRoleDialogOpen, setIsAddRoleDialogOpen] = useState(false);
   const [pushMessageToSnackbar, setPushMessageToSnackbar] = useState(null);
 
   const fetchRandomTargets = useCallback(() => {
@@ -94,13 +93,6 @@ function Main(props) {
     setIsAddUserDialogOpen(false);
   }, [setIsAddUserDialogOpen]);
 
-  const openAddRoleDialog = useCallback(() => {
-    setIsAddRoleDialogOpen(true);
-  }, [setIsAddRoleDialogOpen]);
-
-  const closeAddRoleDialog = useCallback(() => {
-    setIsAddRoleDialogOpen(false);
-  }, [setIsAddRoleDialogOpen]);
 
   const onPaymentSuccess = useCallback(() => {
     pushMessageToSnackbar({
@@ -115,17 +107,6 @@ function Main(props) {
     });
     setIsAddUserDialogOpen(false);
   }, [pushMessageToSnackbar, setIsAddUserDialogOpen]);
-
-  const onAddRoleSuccess = useCallback(() => {
-    pushMessageToSnackbar({
-      text: "El rol ha sido creado.",
-    });
-    setIsAddRoleDialogOpen(false);
-  }, [pushMessageToSnackbar, setIsAddRoleDialogOpen]);
-
-  const editUser = useCallback(() => {
-    
-  });
 
   const fetchRandomStatistics = useCallback(() => {
     const statistics = { profit: [], views: [] };
@@ -266,7 +247,6 @@ function Main(props) {
   const fetchRandomRoles = useCallback(() => {
     const roleList = [];
     const iterations = 4;
-    const oneMonthSeconds = Math.round(60 * 60 * 24 * 30.5);
     const roleTemplates = [
       {
         name: "Admin",
@@ -357,18 +337,13 @@ function Main(props) {
     smoothScrollTop();
     document.title = "AyudaColectiva";
     setSelectedTab("Dashboard");
-    if (!hasFetchedCardChart) {
-      setHasFetchedCardChart(true);
-      import("../../shared/components/CardChart").then((Component) => {
-        setCardChart(Component.default);
-      });
-    }
-  }, [
-    setSelectedTab,
-    setCardChart,
-    hasFetchedCardChart,
-    setHasFetchedCardChart,
-  ]);
+  }, [setSelectedTab]);
+
+  const selectUsers = useCallback(() => {
+    smoothScrollTop();
+    document.title = "AyudaColectiva";
+    setSelectedTab("Users");
+  }, [setSelectedTab]);
 
   const selectPosts = useCallback(() => {
     smoothScrollTop();
@@ -418,12 +393,6 @@ function Main(props) {
     smoothScrollTop();
     document.title = "WaVer - Subscription";
     setSelectedTab("Subscription");
-  }, [setSelectedTab]);
-
-  const selectUsers = useCallback(() => {
-    smoothScrollTop();
-    document.title = "AyudaColectiva";
-    setSelectedTab("Users");
   }, [setSelectedTab]);
 
   const getPushMessageFromChild = useCallback(
@@ -493,7 +462,6 @@ function Main(props) {
           selectUsers={selectUsers}
           openAddBalanceDialog={openAddBalanceDialog}
           openAddUserDialog={openAddUserDialog}
-          openAddRoleDialog={openAddRoleDialog}
           setTargets={setTargets}
           setPosts={setPosts}
         />

@@ -20,7 +20,7 @@ const validarUsuario = (value) => {
                 if (x.name === "Principal Paciente" || x.name === "Salir") {
                     menuItemValidado.push(x);
                 }
-                console.log(role)
+           
             });
         }
 
@@ -29,7 +29,7 @@ const validarUsuario = (value) => {
                 if (x.name === "Principal" || x.name === "Organizaciones" || x.name === "Salir") {
                     menuItemValidado.push(x);
                 }
-            console.log(role)
+           
             });
         }
 

@@ -20,12 +20,8 @@ import {
   isWidthUp,
   withWidth
 } from "@material-ui/core";
-import DashboardIcon from "@material-ui/icons/Dashboard";
-import ImageIcon from "@material-ui/icons/Image";
-import FileCopyIcon from "@material-ui/icons/FileCopy";
 import EventNoteIcon from '@mui/icons-material/EventNote';
 import HomeWorkIcon from '@mui/icons-material/HomeWork';
-import PersonAddIcon from "@material-ui/icons/PersonAdd";
 import PowerSettingsNewIcon from "@material-ui/icons/PowerSettingsNew";
 import MenuIcon from "@material-ui/icons/Menu";
 import SupervisorAccountIcon from "@material-ui/icons/SupervisorAccount";
@@ -133,7 +129,7 @@ const styles = theme => ({
 });
 
 function NavBar(props) {
-  const { selectedTab, messages, classes, width, theme } = props;
+  const { selectedTab, classes, width, theme } = props;
   // Will be use to make website more accessible by screen readers
   const links = useRef([]);
   const [isMobileOpen, setIsMobileOpen] = useState(false);
@@ -155,7 +151,7 @@ function NavBar(props) {
     setIsSideDrawerOpen(false);
   }, [setIsSideDrawerOpen]);
 
-  const logoutUser = function() {
+  const logoutUser = function () {
     localStorage.removeItem('x');
     localStorage.removeItem('r');
   };
@@ -228,7 +224,6 @@ function NavBar(props) {
     const datosUsuario = validadorUsuario.validarUsuario(menuItemsPrueba);
 
     validadorUsuario.variableGuardada = datosUsuario;
-console.log(datosUsuario);
     return datosUsuario;
   }
   const menuItems = menu();
@@ -253,7 +248,7 @@ console.log(datosUsuario);
                 variant="h4"
                 className={classes.brandText}
                 display="inline"
-                style={{color: theme.palette.secondary.light}}
+                style={{ color: theme.palette.secondary.light }}
               >
                 Ayuda
               </Typography>
@@ -261,7 +256,7 @@ console.log(datosUsuario);
                 variant="h4"
                 className={classes.brandText}
                 display="inline"
-                style={{color: theme.palette.secondary.main}}
+                style={{ color: theme.palette.secondary.main }}
               >
                 Colectiva
               </Typography>
@@ -286,7 +281,7 @@ console.log(datosUsuario);
                 <ListItemText
                   className={classes.username}
                   primary={
-                    <Typography style={{color: theme.palette.secondary.main}}>Usuario</Typography>
+                    <Typography style={{ color: theme.palette.secondary.main }}>Usuario</Typography>
                   }
                 />
               )}
