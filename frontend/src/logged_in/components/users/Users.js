@@ -47,19 +47,8 @@ function Users(props) {
     pushMessageToSnackbar,
   } = props;
 
-  const [listadoOrganizaciones, setOrganizaciones] = useState(null);
 
   useEffect(selectUsers, [selectUsers]);
-  useEffect(() => { 
-
-    const getOrganizaciones = async () => {
-      let data = await listarOrganizaciones();
-      let listado = data.response.sort((a,b) => (a.pendienteAprobacion < b.pendienteAprobacion) ? 
-        1 : ((b.pendienteAprobacion < a.pendienteAprobacion) ? -1 : 0));
-      setOrganizaciones(listado);
-    }
-    getOrganizaciones();
-  }, []);
 
   const [value, setValue] = React.useState(0);
   const handleChange = (event, newValue) => {
@@ -87,7 +76,6 @@ function Users(props) {
             <UsersInfo openAddUserDialog={openAddUserDialog} />
             <Divider className={classes.divider} />
             <UsersTable
-              listadoOrganizaciones={listadoOrganizaciones}
               pushMessageToSnackbar={pushMessageToSnackbar}
               targets={targets}
               setTargets={setTargets}
@@ -109,7 +97,7 @@ function Users(props) {
 
 Users.propTypes = {
   classes: PropTypes.object.isRequired,
-  listadoOrganizaciones: PropTypes.arrayOf(PropTypes.object).isRequired,
+  //listadoOrganizaciones: PropTypes.arrayOf(PropTypes.object).isRequired,
   roleList: PropTypes.arrayOf(PropTypes.object).isRequired,
  // selectUsers: PropTypes.func.isRequired,
   openAddUserDialog: PropTypes.func.isRequired,

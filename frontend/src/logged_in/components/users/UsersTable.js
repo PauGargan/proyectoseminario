@@ -17,7 +17,7 @@ import currencyPrettyPrint from "../../../shared/functions/currencyPrettyPrint";
 import EditIcon from '@material-ui/icons/Edit';
 import CheckIcon from '@mui/icons-material/Check';
 import DeleteIcon from '@material-ui/icons/Delete';
-import { listarOrganizaciones } from "../../../controllers/api/api.organizaciones";
+import { listarOrganizaciones, cambiarAprobacion } from "../../../controllers/api/api.organizaciones";
 
 
 const styles = theme => ({
@@ -42,7 +42,14 @@ const styles = theme => ({
     display: "none !important"
   },
   firstData: {
-    paddingLeft: theme.spacing(3)
+    paddingLeft: theme.spacing(3),
+  },
+  link: {
+    color: '#0295d9',
+    cursor: 'pointer',
+    '&:hover': {
+      color: '#0272a6'
+    }
   }
 });
 
@@ -56,6 +63,11 @@ const rows = [
     id: "cuit",
     numeric: false,
     label: "CUIT"
+  },
+  {
+    id: "email",
+    numeric: false,
+    label: "Email"
   },
   {
     id: "telefono",
@@ -77,7 +89,7 @@ const rows = [
 const rowsPerPage = 25;
 
 function UsersTable(props) {
-  const { listadoOrganizaciones, theme, classes } = props;
+  const { theme, classes } = props;
   const [page, setPage] = useState(0);
   const handleChangePage = useCallback(
     (_, page) => {
@@ -85,6 +97,36 @@ function UsersTable(props) {
     },
     [setPage]
   );
+
+  const [listadoOrganizaciones, setOrganizaciones] = useState(null);
+  
+  const getOrganizaciones = async () => {
+    let data = await listarOrganizaciones();
+    let listado = data.response.sort((a,b) => (a.pendienteAprobacion < b.pendienteAprobacion) ? 
+      1 : ((b.pendienteAprobacion < a.pendienteAprobacion) ? -1 : 0));
+    setOrganizaciones(listado);
+  }
+
+  useEffect(() => { 
+    getOrganizaciones();
+  }, []);
+
+  const cambiarEstado = (idOrganizacion, nuevoEstado) => {
+    
+    let data = {
+      id: idOrganizacion, 
+      aprobacion: nuevoEstado
+    };
+
+    cambiarAprobacion(data)
+      .then(response => {
+        if (response.success) {
+          getOrganizaciones();
+        } else {
+          console.log("Error");
+        }
+      });
+  }
 
   const valoresAprobacion = ['Rechazado', 'Aprobado'];
 
@@ -102,10 +144,13 @@ function UsersTable(props) {
                     scope="row"
                     className={classes.firstData}
                   >
-                    {listadoOrganizaciones.nombre}
+                    <a chref={listadoOrganizaciones.paginaWeb} className={classes.link} target="_blank">{listadoOrganizaciones.nombre}</a>
                   </TableCell>
                   <TableCell component="th" scope="row">
                     {listadoOrganizaciones.CUIT}
+                  </TableCell>
+                  <TableCell component="th" scope="row">
+                    {listadoOrganizaciones.usuarioDetalle.email}
                   </TableCell>
                   <TableCell component="th" scope="row">
                     {listadoOrganizaciones.telefono}
@@ -114,10 +159,10 @@ function UsersTable(props) {
                     {listadoOrganizaciones.pendienteAprobacion ? 'Pendiente' : valoresAprobacion[+listadoOrganizaciones.aprobacion]}
                   </TableCell>
                   <TableCell component="th" scope="row">
-                    <IconButton> 
+                    <IconButton onClick={() => cambiarEstado(listadoOrganizaciones.id, 1)}> 
                       <CheckIcon className="text-black" />
                     </IconButton>
-                    <IconButton> 
+                    <IconButton onClick={() => cambiarEstado(listadoOrganizaciones.id, 0)}> 
                       <DeleteIcon className="text-black" />
                     </IconButton> 
                   </TableCell>

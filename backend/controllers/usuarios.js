@@ -194,8 +194,17 @@ module.exports = {
         var parametros = {
             id: req.body.id,
             nombre: req.body.nombre,
+            aprobacion: req.body.aprobacion,
             mision: req.body.mision,
-            aprobacion: req.body.aprobacion
+            direccion: req.body.direccion,
+            provincia: req.body.provincia,
+            telefono: req.body.telefono,
+            personeriaJuridica: req.body.nroPersoneriaJuridica,
+            organismoOtorgamiento: req.body.organismoPersoneriaJuridica,
+            fechaOtorgamiento: req.body.fechaOtorgamientoPersoneriaJuridica,
+            paginaWeb: req.body.paginaWeb,
+            cuit: req.body.cuit,
+            pendienteAprobacion: req.body.pendienteAprobacion
         }
 
         return organizaciones
@@ -206,7 +215,32 @@ module.exports = {
                     if (parametros.nombre == null) { parametros.nombre = result.nombre; }
                     if (parametros.mision == null) { parametros.mision = result.mision; }
                     if (parametros.aprobacion == null) { parametros.aprobacion = result.aprobacion; }
-                    result.update({ nombre: parametros.nombre, mision: parametros.mision, aprobacion: parametros.aprobacion })
+                    if (parametros.pendienteAprobacion == null) { parametros.pendienteAprobacion = result.pendienteAprobacion; }
+                    if (parametros.direccion == null) { parametros.direccion = result.direccion; }
+                    if (parametros.provincia == null) { parametros.provincia = result.provincia; }
+                    if (parametros.telefono == null) { parametros.telefono = result.telefono; }
+                    if (parametros.personeriaJuridica == null) { parametros.personeriaJuridica = result.personeriaJuridica; }
+                    if (parametros.organismoOtorgamiento == null) { parametros.organismoOtorgamiento = result.organismoOtorgamiento; }
+                    if (parametros.fechaOtorgamiento == null) { parametros.fechaOtorgamiento = result.fechaOtorgamiento; }
+                    if (parametros.paginaWeb == null) { parametros.paginaWeb = result.paginaWeb; }
+                    if (parametros.cuit == null) { parametros.cuit = result.cuit; }
+                
+                    result.update({ 
+                        nombre: parametros.nombre, 
+                        mision: parametros.mision, 
+                        direccion: parametros.direccion,
+                        provincia: parametros.provincia,
+                        provincia: parametros.provincia,
+                        telefono: parametros.telefono,
+                        personeriaJuridica: parametros.personeriaJuridica,
+                        organismoOtorgamiento: parametros.organismoOtorgamiento,
+                        fechaOtorgamiento: parametros.fechaOtorgamiento,
+                        paginaWeb: parametros.paginaWeb,
+                        cuit: parametros.cuit,
+                        aprobacion: parametros.aprobacion,
+                        pendienteAprobacion: parametros.pendienteAprobacion,
+
+                     })
                         .then(() => res.status(200).send({ message: "La organizacion se a modificado correctamente.", result }))
                         .catch(error => res.status(400).send({ message: "Ocurrio un error al intentar modificar la organizacion.", error }))
                 }
@@ -316,7 +350,11 @@ module.exports = {
     listarOrganizaciones(req, res) {
         var parametros = { }
         return organizaciones
-            .findAll()
+            .findAll({ 
+                include: [{
+                    all: true,
+                    nested: true
+                }]})
             .then(result => res.status(200).send(result))
             .catch(error => res.status(400).send({ message: "Ocurrio un error al intentar conseguir las organizaciones.", error }))
     },

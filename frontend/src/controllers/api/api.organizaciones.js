@@ -89,14 +89,15 @@ export const listarOrganizaciones = async function()  {
    }
 }
 
-export const cambiarAprobacion = async function(organizacion)  {
+export const cambiarAprobacion = async function(organizacionData)  {
  // url
- let url = urlWebServices.createOrganizacion;
+ let url = urlWebServices.editOrganizaciones;
  var token = localStorage.getItem('x');
  // Genero formulario con datos a pasar
  let formData = new URLSearchParams();
- formData.append('id', organizacion.id);
- formData.append('aprobacion', organizacion.aprobacion);
+ formData.append('id', organizacionData.id);
+ formData.append('aprobacion', organizacionData.aprobacion);
+ formData.append('pendienteAprobacion', 0);
 
 
  try {

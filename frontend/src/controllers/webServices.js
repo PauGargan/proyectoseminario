@@ -25,6 +25,7 @@ const urlWebServices = {
      */
     createOrganizacion: rutaBack + "api/organizaciones/crear",
     listOrganizaciones: rutaBack + "api/organizaciones/listar",
+    editOrganizaciones: rutaBack + "api/organizaciones/modificar",
 
     /*
      * Eventos

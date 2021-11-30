@@ -75,7 +75,6 @@ export default function ListadoDeEventos() {
   const [state, setState] = React.useState(null);
 
   const nuevoEvento = (newData) => {
-    console.log(newData);
     let eventoData = {
       titulo: newData.title,
       descripcion: newData.description,
